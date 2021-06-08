@@ -33,6 +33,8 @@ Use the Android Studio *Build Variants* button to choose between **release** and
 	- Retrofit with Kotlin Coroutine 
 ## Unit Tests	
 	- Junit
+	- Espresso
+	- Mockito
 
 ## App Feature
 	- Internet Check
