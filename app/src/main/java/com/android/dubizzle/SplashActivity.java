@@ -7,8 +7,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.android.dubizzle.mvi.ui.MainActivity;
+import com.android.dubizzle.mvi.util.HCheckInternet;
 
 import static com.android.dubizzle.mvi.util.Constants.SPLASH_TIME;
 
@@ -20,10 +22,18 @@ public class SplashActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-        new Handler(Looper.getMainLooper()).postDelayed(this::startMainActivity, SPLASH_TIME);
+        HCheckInternet nH_checkInternet = new HCheckInternet();
+        if (nH_checkInternet.isNetworkRedconnect(this)) {
+            // * There is a network connection * /
+            new Handler(Looper.getMainLooper()).postDelayed(this::startMainActivity, SPLASH_TIME);
+        } else {
+            // * There is no network connection * /
+            Toast.makeText(getApplicationContext(),"No Internet",Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void startMainActivity() {
+
         finish();
         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(intent);
