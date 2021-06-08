@@ -8,10 +8,12 @@ import android.os.Looper;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.android.dubizzle.mvi.MainActivity;
+import com.android.dubizzle.mvi.ui.MainActivity;
+
+import static com.android.dubizzle.mvi.util.Constants.SPLASH_TIME;
 
 public class SplashActivity extends Activity {
-    int SPLASH_TIME = 2000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
